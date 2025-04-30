@@ -1,0 +1,124 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background-size: 400% 400%;
+    background: rgb(202, 200, 200);
+  }
+  
+  .gradient-bg {
+   
+    background-size: 400% 400%;
+    height: 100vh;
+  }
+  
+  #loginForm , #SignUpForm , #contactForm {
+    border-radius: 20px;
+    padding: 30px;
+    opacity: 0;
+    transform: translateY(60px);
+    animation: fadeInUp 1s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .form-section , .contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .form-container , .contact-form {
+    width: 100%;
+    height: 85%;
+    max-height:800px;
+    max-width: 800px;
+  }
+  
+  
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    border: none;
+    border-bottom: 2px solid #000000;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="text"]:focus {
+    border-color: #474444;
+    outline: none;
+    
+  }
+  
+  input[type="email"]::placeholder,
+  input[type="password"]::placeholder,
+  input[type="text"]::placeholder {
+    color: #6a6666;
+  }
+  
+  .form-text {
+    font-size: 0.875rem;
+  }
+  
+  .btn {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn:hover {
+    background: linear-gradient(to right, #fd7e14, #666666);
+    transform: scale(1.04);
+  }
+  
+  #SignUpForm p {
+    color: #051da4;
+    font-weight: 400;
+  }
+  
+  #SignUpForm p a {
+    color:  #297bd3;
+    text-decoration: none;
+    font-weight: 400;
+  }
+
+  @media (max-width:500px)  {
+    .form-container {
+      height:100%;
+      min-height: 100%;  
+    }
+    
+  }
+  
+  @media ((max-width:768px))  {
+    .form-container {
+      height:100%;
+      min-height: 100%;  
+    }
+    
+  }
+
+  i {
+    display: inline-block;
+    transition: transform 0.1s ease;
+    margin-bottom: 5px;
+ }
+ i:hover {
+   transform: scale(1.4);
+   color:#fd7e14; 
+ }
+   

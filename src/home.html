@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+</head>
+<body>
+
+<a href="car_listing.html">Landing Page</a>
+
+<!-- Logout Button -->
+<button onclick="logout()">Logout</button>
+
+<!-- Load logout logic -->
+<script type="module">
+    import {logout} from './js/auth.js'; // adjust path if needed
+
+    window.logout = logout; // expose it to global scope so HTML can call it
+</script>
+
+</body>
+</html>
