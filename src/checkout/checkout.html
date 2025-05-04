@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="checkout.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container py-5">
+    <div class="row">
+
+        <!-- Left side: User Info Form -->
+        <div class="col-md-6">
+            <div class="form-box border rounded p-4 shadow-sm">
+                <h4 class="mb-4">Your Information</h4>
+                <form id="checkoutForm" novalidate>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                        <div id="nameError" class="form-text text-danger"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" required>
+                        <div id="emailError" class="form-text text-danger"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Pickup Location</label>
+                        <input type="text" class="form-control" id="location" required>
+                        <div id="locationError" class="form-text text-danger"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" id="phone" required>
+                        <div id="phoneError" class="form-text text-danger"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Complete Booking</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right side: Booking Summary -->
+        <div class="col-md-6">
+            <div class="invoice border rounded p-4 shadow-sm">
+                <h4 class="mb-4">Booking Summary</h4>
+                <img id="carImage" src="" alt="Car Image Preview" class="img-fluid rounded mb-3"
+                     style="max-height: 200px; object-fit: cover;">
+                <p><strong>Car Name:</strong> <span id="carName"></span></p>
+                <p><strong>Price per Day:</strong> $<span id="pricePerDay"></span></p>
+                <p><strong>Booking Days:</strong> <span id="bookingDays"></span> day(s)</p>
+                <p class="fw-bold text-success"><strong>Total:</strong> $<span id="totalPrice"></span></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="checkout.js"></script>
+</body>
+</html>

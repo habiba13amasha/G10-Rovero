@@ -29,8 +29,10 @@ if (userBookings.length === 0) {
   <td class="align-middle">${booking.from_date}</td>
   <td class="align-middle">${booking.to_date}</td>
   <td class="align-middle">${booking.total}</td>
+  <td class="align-middle">${booking.booking_status || "Pending"}
   <td class="align-middle">
-    <button class="btn btn-danger btn-sm" onclick="cancelBooking(${booking.id})">Cancel</button>
+    <button class="btn btn-danger btn-sm mb-1" onclick="cancelBooking(${booking.id})">Cancel</button><br/>
+    <button class="btn btn-primary btn-sm" onclick="proceedToCheckout(${booking.id})">Checkout</button>
   </td>
       `;
         bookingHistoryTable.appendChild(row);
@@ -46,4 +48,8 @@ window.cancelBooking = function (bookingId) {
         alert("Booking canceled successfully!");
         location.reload();
     }
+};
+
+window.proceedToCheckout = function (bookingId) {
+    window.location.href = `./checkout/checkout.html?booking_id=${bookingId}`;
 };

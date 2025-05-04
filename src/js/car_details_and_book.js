@@ -100,7 +100,8 @@ bookButton.addEventListener("click", () => {
         carImage: currentCar.image_url,
         from_date: startDate,
         to_date: endDate,
-        total: `$${total.toFixed(2)}`
+        booking_status: "Pending",
+        total: `${total.toFixed(2)}`
     };
 
     const existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];

@@ -160,38 +160,43 @@
 
 <!-- JS to Populate Featured Cars -->
 <script type="module">
-    // Function to load JSON file and store in localStorage
     function loadJSONToLocalStorage(fileName, storageKey = null) {
         const key = storageKey || fileName.replace('.json', '');
 
-        if (!localStorage.getItem(key)) {
-            fetch(`data/${fileName}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Failed to load ${fileName}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    localStorage.setItem(key, JSON.stringify(data));
-                    console.log(`${key} data loaded into localStorage`);
-                })
-                .catch(error => console.error('Error loading JSON:', error));
-        } else {
-            console.log(`${key} already exists in localStorage`);
-        }
+        return new Promise((resolve, reject) => {
+            if (!localStorage.getItem(key)) {
+                fetch(`data/${fileName}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error(`Failed to load ${fileName}`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        localStorage.setItem(key, JSON.stringify(data));
+                        console.log(`${key} data loaded into localStorage`);
+                        resolve();
+                    })
+                    .catch(error => {
+                        console.error('Error loading JSON:', error);
+                        reject(error);
+                    });
+            } else {
+                console.log(`${key} already exists in localStorage`);
+                resolve();
+            }
+        });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        loadJSONToLocalStorage('cars.json');
-        loadJSONToLocalStorage('users.json');
-        loadJSONToLocalStorage('bookings.json');
+        Promise.all([
+            loadJSONToLocalStorage('cars.json'),
+            loadJSONToLocalStorage('users.json'),
+            loadJSONToLocalStorage('bookings.json')
+        ]).then(() => {
+            const cars = JSON.parse(localStorage.getItem("cars")) || [];
+            const featuredCars = cars.filter(car => car.featured).slice(0, 3);
+            const container = document.getElementById("featuredCarsContainer");
 
-        const cars = JSON.parse(localStorage.getItem("cars")) || [];
-        const featuredCars = cars.filter(car => car.featured).slice(0, 3);
-        const container = document.getElementById("featuredCarsContainer");
-
-        container.innerHTML = featuredCars.map(car => `
+            container.innerHTML = featuredCars.map(car => `
           <div class="col-md-4">
             <div class="card h-100">
               <img src="${car.image_url}" alt="${car.name}" class="card-img-top">
@@ -202,8 +207,10 @@
               </div>
             </div>
           </div>
-    `).join("");
+        `).join("");
+        });
     });
+
 </script>
 </body>
 </html>
