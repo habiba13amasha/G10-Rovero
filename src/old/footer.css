@@ -1,0 +1,125 @@
+.pagesLinks p {
+    margin: 5px 0;
+    padding: 0;
+}
+
+.pagesLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pagesLinks p a {
+    color: #fffafa;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+    padding: 5px 10px;
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+
+.pagesLinks p a:hover {
+    color: #fd7e14;
+    transform: scale(1.3);
+}
+
+.social-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 240px;
+}
+
+.social-button {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    height: 45px;
+    align-items: center;
+    position: relative;
+}
+
+.social-icon {
+    width: 30px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+    border-radius: 5px;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icon i {
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-button:hover .social-icon {
+    transform: rotate(0deg);
+}
+
+.social-button:hover .social-icon i {
+    transform: rotate(0deg);
+}
+
+.social-text {
+    line-height: 35px;
+    padding-left: 20px;
+    padding-right: 5px;
+    font-size: 15px;
+    width: 200px;
+    white-space: nowrap;
+    position: relative;
+    left: -15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Facebook */
+.facebook .social-icon {
+    background-color: #0866ff;
+}
+
+.facebook .social-text {
+    background-color: #0866ff;
+}
+
+/* ------------------------------ */
+
+/* Instagram */
+.instagram .social-icon {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.instagram .social-text {
+    background: linear-gradient(to right, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+/* ------------------------------ */
+
+/* Twitter/X */
+.twitter .social-icon {
+    background-color: #1DA1F2;
+}
+
+.twitter .social-text {
+    background-color: #1DA1F2;
+}
+
+/* ------------------------------ */
+
+/* YouTube */
+.youtube .social-icon {
+    background-color: #FF0000;
+}
+
+.youtube .social-text {
+    background-color: #FF0000;
+}
+  
