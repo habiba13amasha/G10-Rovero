@@ -93,13 +93,14 @@ bookButton.addEventListener("click", () => {
     const total = durationInDays * currentCar.daily_rate;
 
     const newBooking = {
+        id: Date.now(), // simple unique ID
         user_id: user.id,
         car_id: currentCar.id,
         carName: currentCar.name,
         carImage: currentCar.image_url,
-        startDate,
-        endDate,
-        totalPrice: `$${total.toFixed(2)}`
+        from_date: startDate,
+        to_date: endDate,
+        total: `$${total.toFixed(2)}`
     };
 
     const existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];

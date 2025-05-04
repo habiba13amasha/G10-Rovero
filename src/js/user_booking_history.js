@@ -24,14 +24,14 @@ if (userBookings.length === 0) {
     userBookings.forEach((booking) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-        <td>${booking.carName || "Unknown"}</td>
-        <td><img src="${booking.carImage || "default.jpg"}" alt="${booking.carName || "Car"}" width="100"></td>
-        <td>${booking.from_date}</td>
-        <td>${booking.to_date}</td>
-        <td>${booking.total}</td>
-        <td>
-          <button class="btn btn-danger btn-sm" onclick="cancelBooking(${booking.id})">Cancel</button>
-        </td>
+  <td class="align-middle">${booking.carName || "Unknown"}</td>
+  <td class="align-middle"><img src="${booking.carImage || "default.jpg"}" alt="${booking.carName || "Car"}" width="100"></td>
+  <td class="align-middle">${booking.from_date}</td>
+  <td class="align-middle">${booking.to_date}</td>
+  <td class="align-middle">${booking.total}</td>
+  <td class="align-middle">
+    <button class="btn btn-danger btn-sm" onclick="cancelBooking(${booking.id})">Cancel</button>
+  </td>
       `;
         bookingHistoryTable.appendChild(row);
     });

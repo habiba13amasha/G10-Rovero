@@ -45,10 +45,10 @@ form.addEventListener("submit", function (e) {
         if (foundUser) {
             saveAuth(foundUser)
 
-            if(foundUser.role === "admin") {
-                window.location.href = "admin-dashboard.html";
-            } else if (foundUser.role === "user") {
-                window.location.href = "home.html";
+            if(foundUser.role === "Admin") {
+                window.location.href = "./dashboard/admin-dashboard.html";
+            } else if (foundUser.role === "User") {
+                window.location.href = "landing_page.html";
             } else {
                 console.log('Error occurred in role');
             }

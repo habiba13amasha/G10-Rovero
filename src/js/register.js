@@ -1,6 +1,6 @@
 import {saveAuth} from "./auth.js";
 
-const form = document.getElementById("SignUpForm");
+const form = document.getElementById("registerForm");
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -70,7 +70,7 @@ form.addEventListener("submit", function (e) {
 
         setTimeout(() => {
             alert("Account created successfully!");
-            window.location.href = "home.html";
+            window.location.href = "landing_page.html";
         }, 1000);
     }
 });
