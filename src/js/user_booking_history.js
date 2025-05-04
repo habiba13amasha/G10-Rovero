@@ -1,4 +1,4 @@
-import {getAuthUser} from "./auth.js"; // adjust the path if needed
+import {getAuthUser} from "./auth.js"; // Adjust path if needed
 
 const user = getAuthUser();
 
@@ -8,8 +8,8 @@ if (!user) {
 }
 
 const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+const cars = JSON.parse(localStorage.getItem("cars")) || [];
 
-// Filter bookings for the logged - in user
 const userBookings = bookings.filter(b => b.user_id === user.id);
 
 const bookingHistoryTable = document.getElementById("bookingHistoryTable");
@@ -17,29 +17,36 @@ const bookingHistoryTable = document.getElementById("bookingHistoryTable");
 if (userBookings.length === 0) {
     bookingHistoryTable.innerHTML = `
       <tr>
-        <td colspan="6" class="text-center">No bookings found</td>
+        <td colspan="7" class="text-center">No bookings found</td>
       </tr>
     `;
 } else {
     userBookings.forEach((booking) => {
+        const car = cars.find(c => c.id === booking.car_id) || {};
+        const carName = car.name || "Unknown";
+        const carImage = car.image_url || "default.jpg";
+
+        const fromDate = new Date(booking.from_date).toLocaleString();
+        const toDate = new Date(booking.to_date).toLocaleString();
+
         const row = document.createElement("tr");
         row.innerHTML = `
-  <td class="align-middle">${booking.carName || "Unknown"}</td>
-  <td class="align-middle"><img src="${booking.carImage || "default.jpg"}" alt="${booking.carName || "Car"}" width="100"></td>
-  <td class="align-middle">${booking.from_date}</td>
-  <td class="align-middle">${booking.to_date}</td>
-  <td class="align-middle">${booking.total}</td>
-  <td class="align-middle">${booking.booking_status || "Pending"}
-  <td class="align-middle">
-    <button class="btn btn-danger btn-sm mb-1" onclick="cancelBooking(${booking.id})">Cancel</button><br/>
-    <button class="btn btn-primary btn-sm" onclick="proceedToCheckout(${booking.id})">Checkout</button>
-  </td>
-      `;
+            <td class="align-middle">${carName}</td>
+            <td class="align-middle"><img src="${carImage}" alt="${carName}" width="100"></td>
+            <td class="align-middle">${fromDate}</td>
+            <td class="align-middle">${toDate}</td>
+            <td class="align-middle">$${booking.total}</td>
+            <td class="align-middle">${booking.booking_status || "Pending"}</td>
+            <td class="align-middle">
+                <button class="btn btn-danger btn-sm mb-1" onclick="cancelBooking(${booking.id})">Cancel</button><br/>
+                <button class="btn btn-primary btn-sm" onclick="proceedToCheckout(${booking.id})">Checkout</button>
+            </td>
+        `;
         bookingHistoryTable.appendChild(row);
     });
 }
 
-// Expose cancel function globally
+// Cancel booking function
 window.cancelBooking = function (bookingId) {
     const confirmCancel = confirm("Are you sure you want to cancel this booking?");
     if (confirmCancel) {
@@ -50,6 +57,7 @@ window.cancelBooking = function (bookingId) {
     }
 };
 
+// Proceed to checkout
 window.proceedToCheckout = function (bookingId) {
     window.location.href = `./checkout/checkout.html?booking_id=${bookingId}`;
 };
