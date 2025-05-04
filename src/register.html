@@ -81,5 +81,34 @@
 
 <script type="module" src="js/register.js"></script>
 
+<script>
+    // Function to load JSON file and store in localStorage
+    function loadJSONToLocalStorage(fileName, storageKey = null) {
+        const key = storageKey || fileName.replace('.json', '');
+
+        if (!localStorage.getItem(key)) {
+            fetch(`data/${fileName}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to load ${fileName}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    localStorage.setItem(key, JSON.stringify(data));
+                    console.log(`${key} data loaded into localStorage`);
+                })
+                .catch(error => console.error('Error loading JSON:', error));
+        } else {
+            console.log(`${key} already exists in localStorage`);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadJSONToLocalStorage('cars.json');
+        loadJSONToLocalStorage('users.json');
+        loadJSONToLocalStorage('bookings.json');
+    })
+</script>
 </body>
 </html>

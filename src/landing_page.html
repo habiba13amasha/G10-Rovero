@@ -160,8 +160,6 @@
 
 <!-- JS to Populate Featured Cars -->
 <script type="module">
-    // import {getAuthUser, logout} from "./js/auth.js";
-
     // Function to load JSON file and store in localStorage
     function loadJSONToLocalStorage(fileName, storageKey = null) {
         const key = storageKey || fileName.replace('.json', '');
@@ -185,6 +183,10 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        loadJSONToLocalStorage('cars.json');
+        loadJSONToLocalStorage('users.json');
+        loadJSONToLocalStorage('bookings.json');
+
         const cars = JSON.parse(localStorage.getItem("cars")) || [];
         const featuredCars = cars.filter(car => car.featured).slice(0, 3);
         const container = document.getElementById("featuredCarsContainer");
@@ -201,13 +203,6 @@
             </div>
           </div>
     `).join("");
-    });
-
-    // Call for each JSON file
-    document.addEventListener('DOMContentLoaded', () => {
-        loadJSONToLocalStorage('cars.json');
-        loadJSONToLocalStorage('users.json');
-        loadJSONToLocalStorage('bookings.json');
     });
 </script>
 </body>
